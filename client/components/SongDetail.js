@@ -7,7 +7,7 @@ import LyricCreate from './LyricCreate';
 
 class SongDetail extends Component {
   render() {
-    const { loading, song } = this.props.data;
+    const { params: { id }, data: { loading, song } } = this.props;
 
     if(loading) {
       return <div />;
@@ -17,7 +17,7 @@ class SongDetail extends Component {
       <div>
         <Link to="/">Back</Link>
         <h3>{song.title}</h3>
-        <LyricCreate />
+        <LyricCreate id={id}/>
       </div>
     );
   }
