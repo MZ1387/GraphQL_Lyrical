@@ -36,6 +36,7 @@ class SongList extends Component {
     if(this.props.data.loading) {
       return <div>Loading...</div>
     }
+
     return (
       <div>
         <ul className={"collection"}>
