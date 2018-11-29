@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import query from '../queries/fetchSongs';
 
 class LyricList extends Component {
-  // onSongDelete(id) {
-  //   const { mutate, data: { refetch } } = this.props;
-  //
-  //   mutate({
-  //     variables: { id }
-  //   }).then(() => refetch())
-  // }
-  //
-  // renderSongs() {
-  //   const { songs } = this.props.data;
-  //
-  //   return songs.map(({ id, title }) => {
-  //     return (
-  //       <li key={id} className="collection-item">
-  //         <Link to={`/songs/${id}`}>{title}</Link>
-  //         <i
-  //           className="material-icons"
-  //           onClick={() => this.onSongDelete(id)}
-  //         >
-  //           delete
-  //         </i>
-  //       </li>
-  //     );
-  //   });
-  // }
+  onLyricLike(id) {
+    const { mutate, data: { refetch } } = this.props;
+
+    mutate({
+      variables: { id }
+    }).then(() => refetch())
+  }
+
+  renderLyrics() {
+    const { lyrics } = this.props;
+
+    return lyrics.map(({ id, content }) => {
+      return (
+        <li key={id} className="collection-item">
+          {content}
+          <i
+            className="material-icons"
+            onClick={() => this.onLyricLike(id)}
+          >
+            delete
+          </i>
+        </li>
+      );
+    });
+  }
 
   render() {
 
@@ -39,7 +37,7 @@ class LyricList extends Component {
 
     return (
       <ul>
-        Lyric List
+        {this.renderLyrics()}
       </ul>
     );
   }
