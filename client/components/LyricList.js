@@ -30,11 +30,6 @@ class LyricList extends Component {
   }
 
   render() {
-
-    // if(this.props.data.loading) {
-    //   return <div />;
-    // }
-
     return (
       <ul>
         {this.renderLyrics()}
@@ -42,13 +37,5 @@ class LyricList extends Component {
     );
   }
 };
-
-// const mutation = gql`
-//   mutation DeleteSong($id: ID){
-//     deleteSong(id: $id) {
-//       id
-//     }
-//   }
-// `;
 
 export default LyricList;
