@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class LyricList extends Component {
-  onLyricLike(id) {
-    const { mutate, data: { refetch } } = this.props;
+  onLike(id) {
+    const { mutate } = this.props;
 
     mutate({
       variables: { id }
@@ -20,9 +20,9 @@ class LyricList extends Component {
           {content}
           <i
             className="material-icons"
-            onClick={() => this.onLyricLike(id)}
+            onClick={() => this.onLike(id)}
           >
-            delete
+            thumb_up
           </i>
         </li>
       );
@@ -38,4 +38,14 @@ class LyricList extends Component {
   }
 };
 
-export default LyricList;
+const mutation = gql`
+  mutation LikeLyric($id: ID){
+    likeLyric(id: $id) {
+      id
+      content
+      likes
+    }
+  }
+`;
+
+export default graphql(mutation)(LyricList);
